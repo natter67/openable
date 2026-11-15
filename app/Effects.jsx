@@ -51,7 +51,6 @@ export default function Effects() {
     let offset = 0;       // how far the track has moved left, in px; wraps at one set of products
     let glide = 0;        // distance still to travel after a button press
     let dragging = false;
-    let hovering = false;
     let lastX = 0;
     let lastTime = 0;
     let resumeAt = 0;     // auto-drift holds off until this time after the user lets go
@@ -66,12 +65,6 @@ export default function Effects() {
       glide = 0;
       hold();
     };
-    const onEnter = () => { hovering = true; };
-    const onLeave = () => { hovering = false; };
-    // With a mouse, the product under the hand cursor plays its opening motion (the .is-live rules in globals.css).
-    const noHover = matchMedia('(hover: none)').matches;
-    const onOver = (e) => e.currentTarget.classList.add('is-live');
-    const onOut = (e) => e.currentTarget.classList.remove('is-live');
     const onStep = (e) => { glide += (e.currentTarget.dataset.dir === 'next' ? 1 : -1) * (track.scrollWidth / products.length); hold(); };
 
     const spotlight = (now) => {
@@ -82,7 +75,7 @@ export default function Effects() {
         const move = Math.abs(glide) < 1 ? glide : glide * 0.14;
         offset += move;
         glide -= move;
-      } else if (!dragging && !hovering && now > resumeAt) {
+      } else if (!dragging && now > resumeAt) {
         offset += (setWidth / 70000) * dt; // one full set every 70 seconds
       }
       offset = ((offset % setWidth) + setWidth) % setWidth;
@@ -96,8 +89,6 @@ export default function Effects() {
         const ease = near * near * (3 - 2 * near);
         el.style.transform = `scale(${1 + 0.4 * ease})`;
         el.style.opacity = 0.5 + 0.5 * ease;
-        // Touch screens have no cursor to hover with, so there the centred product plays its opening motion.
-        if (noHover) el.classList.toggle('is-live', ease > 0.45);
       });
       frame = requestAnimationFrame(spotlight);
     };
@@ -108,10 +99,7 @@ export default function Effects() {
       marquee.addEventListener('pointerup', onUp);
       marquee.addEventListener('pointercancel', onUp);
       marquee.addEventListener('wheel', onWheel, { passive: false });
-      marquee.addEventListener('mouseenter', onEnter);
-      marquee.addEventListener('mouseleave', onLeave);
       steps.forEach((b) => b.addEventListener('click', onStep));
-      if (!noHover) products.forEach((el) => { el.addEventListener('mouseenter', onOver); el.addEventListener('mouseleave', onOut); });
       frame = requestAnimationFrame(spotlight);
     }
 
@@ -144,11 +132,8 @@ export default function Effects() {
         marquee.removeEventListener('pointerup', onUp);
         marquee.removeEventListener('pointercancel', onUp);
         marquee.removeEventListener('wheel', onWheel);
-        marquee.removeEventListener('mouseenter', onEnter);
-        marquee.removeEventListener('mouseleave', onLeave);
       }
       steps.forEach((b) => b.removeEventListener('click', onStep));
-      products.forEach((el) => { el.removeEventListener('mouseenter', onOver); el.removeEventListener('mouseleave', onOut); });
     };
   }, []);
 

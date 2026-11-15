@@ -155,12 +155,10 @@ export default function ProductCarousel() {
     <>
       <div className="marquee">
         <div className="marquee-track">
-          {[0, 1, 2].map((copy) => PRODUCTS.map(({ name, part, Art, hard, easy }) => (
+          {[0, 1, 2].map((copy) => PRODUCTS.map(({ name, part, Art }) => (
             <figure className="product" key={`${copy}-${name}`} aria-hidden={copy > 0}>
               <svg viewBox="0 0 300 290" role="img" aria-label={`${name} with its ${part.toLowerCase()} highlighted`}><Art /></svg>
               <figcaption>{name}<span>{part}</span></figcaption>
-              <span className="verdict hard chip below">{hard}</span>
-              <span className="verdict easy chip meets">{easy}</span>
             </figure>
           )))}
         </div>

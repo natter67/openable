@@ -47,10 +47,6 @@ h2{font-size:40px;line-height:1.1;font-weight:600;letter-spacing:-.035em;text-wr
 /* --pitch is one product plus its margins. The tub is the fourth product, so its centre is 3.5 pitches in;
    starting the track 3.2 pitches left of the middle puts the tub just right of centre, first to drift into it. */
 .marquee-track{--pitch:372px;display:flex;width:max-content;margin-left:calc(50vw - 3.2*var(--pitch));animation:marquee 70s linear infinite}
-.marquee:hover .marquee-track{animation-play-state:paused}
-/* the cursor over the carousel is a pinching hand: fingers apart, closing while the mouse is pressed */
-.marquee{cursor:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='44' viewBox='-12 -66 96 88'><path d='M30 -50Q62 -62 70 -32Q74 -8 48 0Q30 4 24 -16Z' fill='%23060912' stroke='%23060912' stroke-width='5' stroke-linejoin='round'/><path transform='rotate%28-16 30 -34%29' d='M30 -34L5 -7' fill='none' stroke='%23060912' stroke-width='19' stroke-linecap='round'/><path transform='rotate%28-16 30 -34%29' d='M30 -34L5 -7' fill='none' stroke='%23F4F7FB' stroke-width='14' stroke-linecap='round'/><path transform='rotate%2816 40 -8%29' d='M40 -8L7 6' fill='none' stroke='%23060912' stroke-width='19' stroke-linecap='round'/><path transform='rotate%2816 40 -8%29' d='M40 -8L7 6' fill='none' stroke='%23F4F7FB' stroke-width='14' stroke-linecap='round'/><path d='M30 -50Q62 -62 70 -32Q74 -8 48 0Q30 4 24 -16Z' fill='%23F4F7FB'/></svg>") 6 33,grab;touch-action:pan-y;user-select:none;-webkit-user-select:none}
-.marquee:active,.marquee.is-dragging{cursor:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='44' viewBox='-12 -66 96 88'><path d='M30 -50Q62 -62 70 -32Q74 -8 48 0Q30 4 24 -16Z' fill='%23060912' stroke='%23060912' stroke-width='5' stroke-linejoin='round'/><path transform='rotate%280 30 -34%29' d='M30 -34L5 -7' fill='none' stroke='%23060912' stroke-width='19' stroke-linecap='round'/><path transform='rotate%280 30 -34%29' d='M30 -34L5 -7' fill='none' stroke='%23F4F7FB' stroke-width='14' stroke-linecap='round'/><path transform='rotate%280 40 -8%29' d='M40 -8L7 6' fill='none' stroke='%23060912' stroke-width='19' stroke-linecap='round'/><path transform='rotate%280 40 -8%29' d='M40 -8L7 6' fill='none' stroke='%23F4F7FB' stroke-width='14' stroke-linecap='round'/><path d='M30 -50Q62 -62 70 -32Q74 -8 48 0Q30 4 24 -16Z' fill='%23F4F7FB'/></svg>") 6 33,grabbing}
 .marquee-nav{position:relative;display:flex;justify-content:center;gap:12px;margin-top:8px}
 .marquee-nav button{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border:0;border-radius:50%;
   background:transparent;box-shadow:inset 0 0 0 1px rgba(244,247,251,.24);color:var(--cloud);cursor:pointer;transition:background-color .2s}
@@ -61,37 +57,6 @@ h2{font-size:40px;line-height:1.1;font-weight:600;letter-spacing:-.035em;text-wr
 .product figcaption{font-weight:500}
 .product figcaption span{display:block;font-size:14px;font-weight:400;color:var(--muted)}
 @keyframes marquee{to{transform:translateX(-33.3333%)}}
-/* Product under the visitor's hand cursor (or, on touch screens, the centred one): the part sticks and jerks,
-   grows, then opens. Per part: --tug is the jerk while stuck, --big is the fixed (larger) part, --open is that part opened. */
-.product{position:relative}
-.product .act{transform-box:fill-box;transition:transform .9s cubic-bezier(.3,.7,.3,1)}
-.act-tab{transform-origin:20% 0;--tug:translate(-2px,-4px) rotate(-4deg);--big:scale(1.9);--open:translate(-16px,-36px) rotate(-22deg) scale(1.9)}
-.act-lid{transform-origin:50% 100%;--tug:rotate(-3deg);--big:scale(1.08,1.4);--open:translateY(-22px) rotate(-8deg) scale(1.08,1.4)}
-.act-cap{transform-origin:50% 100%;--tug:rotate(5deg);--big:scale(1.5);--open:translate(6px,-16px) rotate(14deg) scale(1.5)}
-.act-ring{transform-origin:0 50%;--tug:rotate(-5deg);--big:scale(1.35);--open:translateY(-6px) rotate(-34deg) scale(1.35)}
-.act-tear{transform-origin:100% 100%;--tug:rotate(2deg);--big:scaleY(1.5);--open:translateY(-8px) rotate(12deg) scaleY(1.5)}
-.act-film{transform-origin:100% 0;--tug:translate(1px,-2px);--big:scale(1.5);--open:translate(10px,-12px) scale(1.9)}
-.is-live .act{animation:act-part 5s ease-in-out forwards}
-.verdict{position:absolute;left:50%;top:100%;margin-top:8px;transform:translateX(-50%);opacity:0;pointer-events:none}
-.is-live .verdict.hard{animation:act-hard 5s linear forwards}
-.is-live .verdict.easy{animation:act-easy 5s linear forwards}
-/* the part: stuck and jerking, then bigger, then opened */
-@keyframes act-part{
-  0%,6%,12%,18%,24%,30%,36%{transform:none}
-  3%,9%,15%,21%,27%,33%{transform:var(--tug)}
-  46%,54%{transform:var(--big)}
-  76%,100%{transform:var(--open)}
-}
-/* ridges sliding round a lid or cap: a nudge each way while stuck, then a steady turn of --tw as it comes off */
-.is-live .twist{animation:act-twist 5s linear forwards}
-@keyframes act-twist{
-  0%,6%,12%,18%,24%,30%,36%,54%{transform:none}
-  3%,15%,27%{transform:translateX(2px)}
-  9%,21%,33%{transform:translateX(-2px)}
-  78%,100%{transform:translateX(calc(var(--tw)*-1))}
-}
-@keyframes act-hard{0%{opacity:0}5%,38%{opacity:1}44%,100%{opacity:0}}
-@keyframes act-easy{0%,44%{opacity:0}50%,100%{opacity:1}}
 .glow{position:absolute;z-index:-1;left:50%;width:1400px;height:520px;transform:translateX(-50%);pointer-events:none;
   background:
     radial-gradient(ellipse 22% 18% at 50% 78%,rgba(34,228,255,.30),transparent),

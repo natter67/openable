@@ -147,7 +147,7 @@ export default function Page() {
         <div className="glow" aria-hidden="true"></div>
         <div className="container">
           <h2>Start with one package.</h2>
-          <p className="lead">A $5,000 study screens one pack and returns three options.</p>
+          <p className="lead">A $3,000 study screens one pack and returns three options.</p>
           <div className="btn-row">
             <Link className="btn btn-primary" href="/demo">Open the demo</Link>
             <a className="btn btn-secondary" href="mailto:hello@example.com">Request a study</a>

@@ -4,16 +4,16 @@
 
 // The prize: what a small sales lift on Kraft Heinz soft cream cheese is worth.
 // Base 141M tubs a year. Extra tubs = 141M x lift. Added sales = extra tubs x $1.79 (the demo's price per tub).
-// Profit after costs = extra tubs x $0.82 - $156,000.
-// $156,000 = $13,000 one-time + 141M x $0.001 per tub + $5,000 study - $3,000 of avoided testing.
-// Break-even lift = $156,000 / (141M x $0.82) = 0.135%.
+// Profit after costs = extra tubs x $0.82 - $154,000.
+// $154,000 = $13,000 one-time + 141M x $0.001 per tub + $3,000 study - $3,000 of avoided testing.
+// Break-even lift = $154,000 / (141M x $0.82) = 0.133%.
 export const ROI_ROWS = [
-  ['0.25%', '352,500', '$631k', '+$133k'],
-  ['0.5%', '705,000', '$1.26M', '+$422k'],
+  ['0.25%', '352,500', '$631k', '+$135k'],
+  ['0.5%', '705,000', '$1.26M', '+$424k'],
   ['1%', '1.41M', '$2.52M', '+$1.0M'],
 ];
-export const BREAK_EVEN = '0.135%';
-export const ROI_NOTE = 'A scenario, not a forecast. 141M Kraft Heinz soft cream cheese tubs a year (Circana, company-level). Sales at $1.79 a tub to the brand; profit at $0.82 per added tub, the low end of our researched range of $0.82 to $1.36. First-year cost $156,000: the Moderate tab change across every tub, plus our $5,000 study.';
+export const BREAK_EVEN = '0.133%';
+export const ROI_NOTE = 'A scenario, not a forecast. 141M Kraft Heinz soft cream cheese tubs a year (Circana, company-level). Sales at $1.79 a tub to the brand; profit at $0.82 per added tub, the low end of our researched range of $0.82 to $1.36. First-year cost $154,000: the Moderate tab change across every tub, plus our $3,000 study.';
 
 // Market size = organizations x products each x $3,000 per product.
 // TAM 5,397 x 50 x $3,000 = $809.6M. SAM 1,127 x 50 x $3,000 = $169.1M. SOM 10 x 20 x $3,000 = $600k.
@@ -30,7 +30,7 @@ export const MARKET_BASIS = [
   { label: 'SOM', line: '10 brands × 20 products × $3,000 = $600k by year 5. Our target, not a forecast.' },
   { label: 'Organization counts', line: 'From our Velocity AI top-down market sizing. Not re-verified.' },
   { label: '50 products per organization', line: 'Our assumption; no published average exists. Large brands carry thousands: Kraft Heinz cut more than 1,100 products, about 20% of its US and Canada range (Food Business News).' },
-  { label: '$3,000 per product', line: 'Preliminary. Arthritis Australia charges A$3,190 for a comparable packaging review, and a US senior-friendly panel test runs about $8,000 per design. The first product is a $5,000 study.' },
+  { label: '$3,000 per product', line: 'Preliminary. Arthritis Australia charges A$3,190 for a comparable packaging review, and a US senior-friendly panel test runs about $8,000 per design.' },
   { label: 'Our cost', line: 'The tool costs about $0 to run today, and about $0 more for each further product.' },
 ];
 
@@ -60,5 +60,5 @@ export const PATH_STEPS = [
 ];
 export const PATH_NOTE = 'Kraft Heinz is our target first customer, not a customer or partner.';
 
-export const ASK = 'Our ask: a $5,000 study on one Philadelphia tub.';
+export const ASK = 'Our ask: a $3,000 study on one Philadelphia tub.';
 export const SOURCES = 'Circana via Dairy Foods (tubs sold, 52 weeks to Feb 2026); Kraft Heinz filings and retailer prices (per-tub estimates, our research); Velocity AI canvases (market sizing, competitive landscape, SWOT); Food Business News; hackathon deck.';

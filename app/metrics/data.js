@@ -16,17 +16,18 @@ export const BREAK_EVEN = '0.133%';
 export const ROI_NOTE = 'A scenario, not a forecast. 141M Kraft Heinz soft cream cheese tubs a year (Circana, company-level). Sales at $1.79 a tub to the brand; profit at $0.82 per added tub, the low end of our researched range of $0.82 to $1.36. First-year cost $154,000: the Moderate tab change across every tub, plus our $3,000 study.';
 
 // Market size = organizations x products each x $3,000 per product.
-// TAM 5,397 x 50 x $3,000 = $809.6M. SAM 1,127 x 50 x $3,000 = $169.1M. SOM 10 x 20 x $3,000 = $600k.
+// Food market only. TAM 1,127 x 50 x $3,000 = $169.1M. SAM 394 x 50 x $3,000 = $59.1M (394 = 35% of 1,127).
+// SOM 10 x 20 x $3,000 = $600k.
 export const MARKET_ROWS = [
-  { tier: 'TAM, total market', who: '5,397 US packaged-goods organizations, about 270,000 products', value: '$810M' },
-  { tier: 'SAM, reachable market', who: '1,127 food and beverage organizations, about 56,000 products', value: '$169M' },
+  { tier: 'TAM, total market', who: '1,127 US food and beverage organizations, about 56,000 products', value: '$169M' },
+  { tier: 'SAM, reachable market', who: '394 organizations whose packs we can screen today, about 20,000 products', value: '$59M' },
   { tier: 'SOM, year 5', who: '10 brands, 20 products each', value: '$600k' },
 ];
 export const MARKET_NOTE = 'Market sizing built with Velocity AI, then repriced per product by us. Circles are not to scale. Each product is counted once, so these are one-time totals, not yearly revenue.';
 // How each layer is worked out, and where each input comes from.
 export const MARKET_BASIS = [
-  { label: 'TAM', line: '5,397 organizations × 50 products × $3,000 = $809.6M, shown as $810M.' },
-  { label: 'SAM', line: '1,127 food and beverage organizations × 50 products × $3,000 = $169.1M, shown as $169M.' },
+  { label: 'TAM', line: 'US food and beverage only: 1,127 organizations × 50 products × $3,000 = $169.1M, shown as $169M.' },
+  { label: 'SAM', line: '35% of those, 394 organizations, × 50 products × $3,000 = $59.1M, shown as $59M. The 35% is our assumption for the share with peel, twist or tear openings we can screen today.' },
   { label: 'SOM', line: '10 brands × 20 products × $3,000 = $600k by year 5. Our target, not a forecast.' },
   { label: 'Organization counts', line: 'From our Velocity AI top-down market sizing. Not re-verified.' },
   { label: '50 products per organization', line: 'Our assumption; no published average exists. Large brands carry thousands: Kraft Heinz cut more than 1,100 products, about 20% of its US and Canada range (Food Business News).' },
